@@ -8,3 +8,10 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/* Essential Styles for Lexy Editor Requirement */
+@layer base {
+  /* Hide the Trix attachment button to comply with No-JS and Shrine requirements */
+  trix-toolbar .trix-button-group--file-tools {
+    display: none !important;
+  }
+}
