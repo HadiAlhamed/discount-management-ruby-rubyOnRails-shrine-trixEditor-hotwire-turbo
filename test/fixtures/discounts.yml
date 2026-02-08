@@ -1,13 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
-  email: MyString
-  expiration_date: 2026-02-08
-  image_data: MyText
+  title: "Summer Discount"
+  email: "partner@example.com"
+  expiration_date: <%= 40.days.from_now.to_fs(:db) %>
+  image_data: null
 
 two:
-  title: MyString
-  email: MyString
-  expiration_date: 2026-02-08
-  image_data: MyText
+  title: "Winter Special"
+  email: "info@partner.com"
+  expiration_date: <%= 50.days.from_now.to_fs(:db) %>
+  image_data: null
