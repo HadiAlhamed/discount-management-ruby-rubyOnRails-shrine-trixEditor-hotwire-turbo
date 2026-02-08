@@ -1,9 +1,16 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+puts "Cleaning database..."
+Discount.destroy_all
+
+puts "Creating seeds..."
+
+image_file = File.open(Rails.root.join('test/fixtures/files/rails.png'))
+
+Discount.create!(
+  title: "Grand Opening Discount",
+  email: "marketing@partner.com",
+  description: "This is a seeded discount with a real attached image.",
+  expiration_date: Date.today + 45.days, 
+  image: image_file 
+)
+
+puts "Seed complete! 1 Discount created with image."
