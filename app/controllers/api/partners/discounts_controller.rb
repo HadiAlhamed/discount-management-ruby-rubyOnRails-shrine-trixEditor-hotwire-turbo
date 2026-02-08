@@ -1,7 +1,9 @@
 class Api::Partners::DiscountsController < ActionController::API
   include ActionController::HttpAuthentication::Basic::ControllerMethods
-  http_basic_authenticate_with name: "admin", password: "password"
-
+  http_basic_authenticate_with(
+    name: Rails.application.credentials.dig(:api_auth, :username),
+    password: Rails.application.credentials.dig(:api_auth, :password)
+  )
   def index
     @discounts = Discount.all.with_rich_text_description
 
