@@ -1,0 +1,21 @@
+<div class="max-w-4xl mx-auto p-8">
+  <h1 class="text-3xl font-bold mb-8 text-center">Partner Discount Submission</h1>
+
+  <div class="bg-white shadow-md rounded-lg p-6 border">
+    <h2 class="text-xl font-semibold mb-4">Submit New Discount</h2>
+    <%= turbo_frame_tag "discount_form" do %>
+      <%= render "form", discount: @discount %>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag "modal" %>
+
+  <div class="mt-12">
+  <h2 class="text-xl font-semibold mb-4">Recent Submissions</h2>
+  <div id="discounts_list" class="space-y-4">
+    <% @discounts.each do |d| %>
+      <%= render "discount_row", discount: d %>
+    <% end %>
+  </div>
+</div>
+</div>

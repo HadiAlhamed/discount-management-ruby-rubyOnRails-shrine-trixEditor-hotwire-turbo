@@ -1,0 +1,12 @@
+<div class="border p-4 mb-2">
+  <h3 class="font-bold text-lg"><%= discount.title %></h3>
+  <p class="text-sm text-gray-500">Expires: <%= discount.expiration_date %></p>
+  
+  <div class="mt-2 prose max-w-none">
+    <%= discount.description %>
+  </div>
+
+  <% if discount.image_url %>
+    <%= image_tag discount.image_url, class: "w-32 mt-2" %>
+  <% end %>
+</div>

@@ -1,0 +1,39 @@
+<%= form_with(model: discount, id: "discount_form", class: "space-y-4") do |f| %>
+  <% if discount.errors.any? %>
+    <div class="bg-red-50 text-red-500 p-4 rounded mb-4">
+      <h2 class="font-bold"><%= pluralize(discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
+      <ul class="list-disc pl-5">
+        <% discount.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title, class: "block font-bold" %>
+    <%= f.text_field :title, class: "w-full border rounded p-2" %>
+  </div>
+
+  <div>
+    <%= f.label :email, class: "block font-bold" %>
+    <%= f.email_field :email, class: "w-full border rounded p-2" %>
+  </div>
+
+  <div>
+    <%= f.label :expiration_date, class: "block font-bold" %>
+    <%= f.date_field :expiration_date, class: "w-full border rounded p-2" %>
+  </div>
+
+  <div>
+    <%= f.label :description, "Description", class: "block font-bold" %>
+    <%= f.rich_text_area :description, class: "border rounded" %>
+  </div>
+          
+  <div>
+    <%= f.label :image, "Upload Image ", class: "block font-bold" %>
+    <%= f.file_field :image, class: "w-full" %>
+  </div>
+
+  <%= f.submit "Save", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer" %>
+<% end %>
