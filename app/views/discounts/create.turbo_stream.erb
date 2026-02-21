@@ -1,5 +1,8 @@
-<%= turbo_stream.replace "new_discount_form", partial: "discounts/form", locals: { discount: Discount.new } %>
+<%= turbo_stream.replace "discount_form", partial: "discounts/form", locals: { discount: Discount.new } %>
 
-<%= turbo_stream.update "modal_container" do %>
+<%= turbo_stream.update "modal" do %>
   <%= render partial: "discounts/success_modal" %>
 <% end %>
+
+
+<%= turbo_stream.prepend "discounts_list", partial: "discount_row", locals: { discount: @discount } %>.

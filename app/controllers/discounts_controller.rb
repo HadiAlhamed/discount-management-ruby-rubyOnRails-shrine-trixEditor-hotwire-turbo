@@ -1,6 +1,6 @@
 class DiscountsController < ApplicationController
   def index
-    @discounts = Discount.all.order(created_at: :desc)
+    @discounts = Discount.all.with_rich_text_description.order(created_at: :desc)
     @discount = Discount.new
   end
 
@@ -14,8 +14,16 @@ class DiscountsController < ApplicationController
       end
     else
       @discounts = Discount.all.with_rich_text_description
-
-      render :index, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            "discount_form",
+            partial: "discounts/form",
+            locals: { discount: @discount }
+          )
+        }
+        format.html { render :index, status: :unprocessable_entity }
+      end
     end
   end
 
